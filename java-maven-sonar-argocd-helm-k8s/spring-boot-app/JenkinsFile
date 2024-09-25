@@ -1,26 +1,15 @@
 pipeline {
-  agent any 
-
+  agent {
+    docker {
+      image 'varshith999/maven-varshith-docker-agent:v1'
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+    }
+  }
   stages {
-    stage('Pull Docker Image') {
-      steps {
-        script {
-          sh 'docker pull abhishekf5/maven-abhishek-docker-agent:v1'
-          }
-       }
-    }
-    stage('Run Docker Container') {
-      agent {
-        docker {
-          image 'abhishekf5/maven-abhishek-docker-agent:v1'
-          args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
-        }  
-      }
-    }
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/Varshith1715/Jenkins-Zero-To-Hero.git'
+        //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero'
       }
     }
     stage('Build and Test') {
@@ -32,7 +21,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://18.224.64.60:9000/"
+        SONAR_URL = "http://18.224.64.60:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
