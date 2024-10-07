@@ -53,6 +53,7 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
+                    cd java-maven-sonar-argocd-helm-k8s  # Navigate to the directory containing the .git folder
                     git config user.email "pasupunurivarshith@gmail.com"
                     git config user.name "Varshith1715"
                     BUILD_NUMBER=${BUILD_NUMBER}
