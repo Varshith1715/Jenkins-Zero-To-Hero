@@ -52,7 +52,7 @@ pipeline {
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-              dir("${env.WORKSPACE}") {
+              dir("${env.WORKSPACE}/java-maven-sonar-argocd-helm-k8s") {
                 sh '''
                     git config user.email "pasupunurivarshith@gmail.com"
                     git config user.name "Varshith1715"
