@@ -54,7 +54,6 @@ pipeline {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
               dir("${env.WORKSPACE}") {
                 sh '''
-                    git config user.email "pasupunurivarshith@gmail.com"
                     git config user.name "Varshith1715"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
