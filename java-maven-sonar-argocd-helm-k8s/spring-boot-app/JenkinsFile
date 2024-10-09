@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://3.141.36.54:9000/"
+        SONAR_URL = "http://18.117.149.6:9000/"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -52,7 +52,6 @@ pipeline {
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-              dir("${env.WORKSPACE}/java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests") {
                 sh '''
                     git config user.email "pasupunurivarshith@gmail.com"
                     git config user.name "Varshith1715"
