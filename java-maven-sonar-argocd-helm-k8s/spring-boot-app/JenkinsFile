@@ -54,12 +54,12 @@ pipeline {
           // Navigate to the Git directory where the .git folder is located
           dir('java-maven-sonar-argocd-helm-k8s') {
             sh '''
-              git config user.email "pasupunurivarshith@gmail.com"
-              git config user.name "Varshith1715"
-              sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
-              git add spring-boot-app-manifests/deployment.yml
-              git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-              git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+              "git config user.email pasupunurivarshith@gmail.com"
+              "git config user.name Varshith1715"
+              "sed -i 's/replaceImageTag/${BUILD_NUMBER}/g' spring-boot-app-manifests/deployment.yml"
+              "git add spring-boot-app-manifests/deployment.yml"
+              "git commit -m 'Update deployment image to version ${BUILD_NUMBER}'"
+              "git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main"
             '''
           }
         }
